@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools" tools:context=".activitiy.ListaMarcadoresActivity">
+    <item android:id="@+id/action_recargar"
+        android:title=""
+        android:icon="@android:drawable/stat_notify_sync_noanim"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
+
+</menu>
