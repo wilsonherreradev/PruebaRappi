@@ -31,7 +31,11 @@ public class JsonUtil {
                 JSONObject jsonMarcador=jsonChildren.getJSONObject(i);
                 JSONObject jsonDataChildren= new JSONObject(jsonMarcador.getString("data"));
                 Marcador marcador=new Marcador();
-                marcador.setImagenIcono(jsonDataChildren.getString("icon_img"));
+                if(jsonDataChildren.getString("icon_img").equals("")){
+                    marcador.setImagenIcono(Constantes.IMAGEN_DEFAULT);
+                }else{
+                    marcador.setImagenIcono(jsonDataChildren.getString("icon_img"));
+                }
                 marcador.setTitulo(quitarCaracteres(jsonDataChildren.getString("title")));
                 marcador.setDescripcion(quitarCaracteres(jsonDataChildren.getString("description")));
                 marcador.setDescripcionPublica(quitarCaracteres(jsonDataChildren.getString("public_description")));
@@ -54,6 +58,6 @@ public class JsonUtil {
      * @return
      */
     public String quitarCaracteres(String texto){
-        return texto.replaceAll("#","").replaceAll("/r/","").replaceAll("r/","");
+        return texto.replaceAll("#","").replaceAll("/r/","").replaceAll("r/","").replaceAll("&gt;","");
     }
 }

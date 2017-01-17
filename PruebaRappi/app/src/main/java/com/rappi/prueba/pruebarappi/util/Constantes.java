@@ -1,5 +1,7 @@
 package com.rappi.prueba.pruebarappi.util;
 
+import com.rappi.prueba.pruebarappi.R;
+
 /**
  * @author wilson herrera
  * @version 1.0
@@ -11,7 +13,7 @@ public class Constantes {
     public static final String URL_REDDIT_JSON ="https://www.reddit.com/reddits.json";
 
     //imagen por default cuando se trabaja en modo offline
-    public static final String IMAGEN_DEFAULT ="";
+    public static  String IMAGEN_DEFAULT =String.valueOf(R.mipmap.dimagendefault);
 
     //constante para pasar objetos Marcador en un intent
     public static final String INTENT_MARCADOR ="marcador";

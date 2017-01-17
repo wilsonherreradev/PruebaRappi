@@ -43,14 +43,13 @@ public class AdaptadorMarcadores extends RecyclerView.Adapter<AdaptadorMarcadore
 
     /**
      * infla el viewholder
-     * @param parent
+     * @param viewGroup
      * @param viewType
      * @return
      */
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.celda_marcadores, null));
-
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        return new ViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.celda_marcadores,null));
     }
 
 
@@ -67,10 +66,15 @@ public class AdaptadorMarcadores extends RecyclerView.Adapter<AdaptadorMarcadore
         }
         holder.txTitulo.setText(marcador.getTitulo());
         holder.txDescripcion.setText(marcador.getDescripcionPublica());
-        Glide.with(context).load(marcador.getImagenIcono())
-                .crossFade()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(holder.imgIcono);
+        if(marcador.getImagenIcono().equals(Constantes.IMAGEN_DEFAULT)){
+            holder.imgIcono.setImageResource(Integer.parseInt(Constantes.IMAGEN_DEFAULT));
+        }else {
+            Glide.with(context).load(marcador.getImagenIcono())
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(holder.imgIcono);
+        }
+
     }
 
 

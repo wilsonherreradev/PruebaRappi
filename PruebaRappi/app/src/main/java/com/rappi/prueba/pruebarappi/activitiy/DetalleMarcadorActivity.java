@@ -23,7 +23,7 @@ import com.rappi.prueba.pruebarappi.util.Constantes;
 public class DetalleMarcadorActivity extends AppCompatActivity {
 
     //titulo y descripcion del marcador
-    TextView titulo, descripcionNormal;
+    TextView titulo, descripcionNormal,descripcionCorta,suscriptores;
     //imagen del amrcador
     ImageButton imgMarcador;
     //Button para enviar a la pagina
@@ -52,6 +52,8 @@ public class DetalleMarcadorActivity extends AppCompatActivity {
     public void inicializarComponentesGraficos(){
         titulo = (TextView) findViewById(R.id.titulo);
         descripcionNormal = (TextView) findViewById(R.id.txDescripcionNormal);
+        descripcionCorta = (TextView) findViewById(R.id.txDescripcionCorta);
+        suscriptores = (TextView) findViewById(R.id.txSuscriptores);
         imgMarcador = (ImageButton) findViewById(R.id.imgMarcador);
         abrirUrl = (Button) findViewById(R.id.enlace);
         abrirUrl.setOnClickListener(new View.OnClickListener() {
@@ -68,11 +70,17 @@ public class DetalleMarcadorActivity extends AppCompatActivity {
      */
     public void asignarValoresVista(){
         titulo.setText(marcador.getTitulo());
-        descripcionNormal.setText(marcador.getDescripcionPublica());
-        Glide.with(getApplicationContext()).load(marcador.getImagenIcono())
-                .crossFade()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(imgMarcador);
+        descripcionCorta.setText(marcador.getDescripcionPublica());
+        descripcionNormal.setText(marcador.getDescripcion());
+        suscriptores.setText(getString(R.string.suscriptores)+marcador.getSuscriptores());
+        if(marcador.getImagenIcono().equals(Constantes.IMAGEN_DEFAULT)){
+            imgMarcador.setImageResource(Integer.parseInt(Constantes.IMAGEN_DEFAULT));
+        }else {
+            Glide.with(getApplicationContext()).load(marcador.getImagenIcono())
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(imgMarcador);
+        }
     }
 
 
